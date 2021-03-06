@@ -2,7 +2,7 @@ name: CI
 on: push
 jobs:
   code_quality:
-    name: Checks with black, isort and possibly run tests
+    name: Checks with black and isort
     runs-on: ubuntu-latest
     container: python:3.9
     steps:
