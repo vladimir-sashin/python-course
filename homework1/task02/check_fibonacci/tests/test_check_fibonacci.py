@@ -1,5 +1,4 @@
-from check_fibonacci.task02 import check_fibonacci
-from check_fibonacci.task02 import fibonacci_generator
+from check_fibonacci.task02 import check_fibonacci, fibonacci_generator
 
 
 def test_check_fibonacci_generator_length_3():
