@@ -9,7 +9,7 @@ We guarantee, that the given sequence contain >= 0 integers inside.
 from typing import Sequence
 
 
-def fibonacci_generator(quantity) -> list:
+def fibonacci_generator(quantity: int) -> list:
     a, b = (0, 1)
     for i in range(quantity):
         yield a
