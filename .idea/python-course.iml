@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/course_env/Scripts" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/homework1/sample_project" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/homework1/task02" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/homework1/task03" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.9 (python-course)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
