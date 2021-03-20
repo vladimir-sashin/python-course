@@ -1,6 +1,6 @@
 from unittest.mock import mock_open, patch
 
-from task03 import find_maximum_and_minimum
+from homework1.task03 import find_maximum_and_minimum
 
 
 def test_min_max_integers():

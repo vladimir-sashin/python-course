@@ -1,4 +1,4 @@
-from calculator.calc import check_power_of_2
+from homework1.sample_project import check_power_of_2
 
 
 def test_is_0_power_of_2():

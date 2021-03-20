@@ -1,4 +1,4 @@
-from task04 import check_sum_of_four
+from homework1.task04 import check_sum_of_four
 
 
 def test_check_sum_of_four_happy():
