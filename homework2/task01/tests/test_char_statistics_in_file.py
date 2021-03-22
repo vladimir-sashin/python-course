@@ -1,12 +1,13 @@
-from homework2.task01 import (
-    get_longest_diverse_words,
-    get_rarest_char,
-    get_list_of_rarest_chars,
-    count_punctuation_chars,
-    count_non_ascii_chars,
-    get_most_common_non_ascii_char,
-)
 import os
+
+from homework2.task01 import (
+    count_non_ascii_chars,
+    count_punctuation_chars,
+    get_list_of_rarest_chars,
+    get_longest_diverse_words,
+    get_most_common_non_ascii_char,
+    get_rarest_char,
+)
 
 
 def get_file_path(file_name):
