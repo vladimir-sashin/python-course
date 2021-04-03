@@ -21,7 +21,3 @@ def speed_up_slow_calculate():
     end = default_timer()
     print(f"Elapsed time: {end - start}")
     return end - start
-
-
-"""if __name__ == '__main__':
-    speed_up_slow_calculate()"""
