@@ -1,0 +1,10 @@
+For Windows:
+1. Install Python 3.8 (https://www.python.org/downloads/)
+2. Download and install GIT: https://git-scm.com/download/win
+3. Open terminal
+4. Install pytest: 'pip install pytest'
+5. Navigate to the directory where you want to place cloned repository: cd <your directory path>
+6. Clone the repository https://github.com/vladimir-sashin/python-course: 'git clone https://github.com/vladimir-sashin/python-course'
+7. Checkout branch "homework4": git checkout 'homework4'
+8. Navigate to the directory with task04: 'cd <path to your directory with cloned repository>/python-course/homework4/task04'
+9. Run __init.py__: 'py __init__.py'. If you did everything correctly, you shouldn't see any errors or any output as all tests should pass
