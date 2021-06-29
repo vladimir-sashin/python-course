@@ -39,5 +39,4 @@ def test_count_dots_on_i_error_handling():
     with patch("requests.get") as mock_request:
         with pytest.raises(ValueError):
             mock_request.side_effect = requests.exceptions.RequestException
-            mock_request.return_value = mock_request.side_effect
             count_dots_on_i("https://example.com/")
