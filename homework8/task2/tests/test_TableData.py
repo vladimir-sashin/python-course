@@ -1,9 +1,15 @@
+import os
 import sqlite3
 from shutil import copyfile
 
 import pytest
 
 from homework8.task2 import TableData
+
+
+def get_file_path(file_name):
+    """Auxiliary function to get filepath"""
+    return os.path.join(os.path.dirname(__file__), file_name)
 
 
 def make_temp_db(original_db_filename):
@@ -39,14 +45,17 @@ def modify_bd(db, values_tuple_to_insert=(), name_to_delete=""):
     return db
 
 
-@make_temp_db("example.sqlite")
+original_test_db_file = get_file_path("example.sqlite")
+
+
+@make_temp_db(original_test_db_file)
 def test_get_len(db_file):
     """Get number of rows in the table"""
     presidents = TableData(db_file, "presidents")
     assert len(presidents) == 3
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_table_doesnt_exist(db_file):
     """Try to create a TableData instance passing table name that doesn't exist in database"""
     with pytest.raises(KeyError) as error:
@@ -54,14 +63,14 @@ def test_table_doesnt_exist(db_file):
         assert str(error.value) == "Table not found"
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_get_row_by_name(db_file):
     """Get whole row where column 'name' == value passed in []"""
     presidents = TableData(db_file, "presidents")
     assert presidents["Big Man Tyrone"] == ("Big Man Tyrone", 101, "Kekistan")
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_get_row_by_name_that_doesnt_exist(db_file):
     """Try to get a row passing 'name' that doesn't exist in table"""
     with pytest.raises(KeyError) as error:
@@ -70,21 +79,21 @@ def test_get_row_by_name_that_doesnt_exist(db_file):
     assert str(error.value) == "'Name not found'"
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_check_that_name_is_in_db(db_file):
     """Check that there is a row in the table with specified 'name' value"""
     presidents = TableData(db_file, "presidents")
     assert "Trump" in presidents
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_check_that_name_is_not_in_db(db_file):
     """Check that there is no row in the table with specified 'name' value"""
     presidents = TableData(db_file, "presidents")
     assert ("Qwerty" in presidents) is False
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_iterate_in_for_loop(db_file):
     """Iterate over all database rows to get all values in the list of dicts"""
     presidents = TableData(db_file, "presidents")
@@ -98,7 +107,7 @@ def test_iterate_in_for_loop(db_file):
     ]
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_iterate_in_for_loop_and_get_column_by_square_brackets(db_file):
     """Iterate over all database rows to get values of 'name' column"""
     presidents = TableData(db_file, "presidents")
@@ -108,7 +117,7 @@ def test_iterate_in_for_loop_and_get_column_by_square_brackets(db_file):
     assert presidents_names == ["Yeltsin", "Trump", "Big Man Tyrone"]
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_add_row_then_get_len(db_file):
     """Make a TableData instance, add new row to the database and get it's updated len()"""
     presidents = TableData(db_file, "presidents")
@@ -116,7 +125,7 @@ def test_add_row_then_get_len(db_file):
     assert len(presidents) == 4
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_delete_row_then_get_len(db_file):
     """Make a TableData instance, delete a row from the database and get it's updated len()"""
     presidents = TableData(db_file, "presidents")
@@ -124,7 +133,7 @@ def test_delete_row_then_get_len(db_file):
     assert len(presidents) == 2
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_add_row_and_get_it_by_name(db_file):
     """Make a TableData instance, add new row to the database and get added row by it's 'name'"""
     presidents = TableData(db_file, "presidents")
@@ -132,7 +141,7 @@ def test_add_row_and_get_it_by_name(db_file):
     assert presidents["Biden"] == ("Biden", 12345, "US")
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_delete_row_and_try_to_get_it_by_name(db_file):
     """Make a TableData instance, delete a row from the database and try to get deleted row by it's 'name'"""
     with pytest.raises(KeyError) as error:
@@ -142,7 +151,7 @@ def test_delete_row_and_try_to_get_it_by_name(db_file):
     assert str(error.value) == "'Name not found'"
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_add_row_and_check_that_name_is_in_db(db_file):
     """Make a TableData instance, add new row to the database and check if added row is in table by it's 'name'"""
     presidents = TableData(db_file, "presidents")
@@ -150,7 +159,7 @@ def test_add_row_and_check_that_name_is_in_db(db_file):
     assert "Biden" in presidents
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_delete_row_and_check_that_name_is_not_in_db(db_file):
     """Make a TableData instance, delete a row from the database and check that
     deleted row is not in table by it's 'name'"""
@@ -159,7 +168,7 @@ def test_delete_row_and_check_that_name_is_not_in_db(db_file):
     assert ("Trump" in presidents) is False
 
 
-@make_temp_db("example.sqlite")
+@make_temp_db(original_test_db_file)
 def test_iterate_in_for_loop_after_modifying_db(db_file):
     """Make a TableData instance, delete a row from the database and add a new one, then iterate over new data to get
     all updated values"""
