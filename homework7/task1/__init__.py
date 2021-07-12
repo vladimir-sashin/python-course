@@ -3,7 +3,6 @@ def extract_values_from_tree(d, element):
     counter = 0
 
     while stack:
-        print(stack)
         value = stack.pop()
         if value == element:
             counter += 1
